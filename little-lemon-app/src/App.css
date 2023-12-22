@@ -36,3 +36,54 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  margin: 10px;
+  padding: 10px;
+}
+
+header.head-image {}
+
+.nav-bar {
+  background-color: gray;
+  border-radius: 15px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center
+}
+
+ul li {
+  padding: 4px 8px;
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer1 {
+  float: left;
+}
+
+.footer2 {
+  float: right;
+  border-top: 2px solid black;
+}
+
+.flex {
+  display: flex;
+
+}
+
+.menu {
+  background-color: pink;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+}
