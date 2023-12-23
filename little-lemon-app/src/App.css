@@ -38,33 +38,85 @@
 }
 
 * {
-  margin: 10px;
+  margin1: 10px;
   padding: 10px;
 }
 
-header.head-image {}
 
 .nav-bar {
-  background-color: gray;
+  background-color: black;
   border-radius: 15px;
+  display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 1fr auto;
+    justify-items: end;
 }
 
-ul {
+.nav-bar-footer {
+  background-color: black;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto 1fr auto;
+}
+
+.ul {
   display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
+  justify-content: center;
+    margin-top: 12px;
+  }
+  
+  .ul-footer {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   justify-content: center
 }
 
+span {
+  color: white;
+}
 ul li {
-  padding: 4px 8px;
+  padding1: 4px 8px;
   font-size: 10px;
 }
 
 a {
   text-decoration: none;
   color: white;
+  font-size: 15px;
+    color: rgb(197, 206, 95);
+    font-weight: bold;
+    color: white;
+  }
+  
+  .a-footer {
+    text-decoration: none;
+    font-size: 10px;
+    color: rgb(197, 206, 95);
+    font-weight: bold;
+    color: white;
+  }
+  
+  .order {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    color: rgb(197, 206, 95);
+    font-weight: bold;
+    color: black;
+  }
+  
+  .left {
+    text-align: left;
+    display: inline
+  }
+  
+  .right {
+    text-align: right;
+    display: inline
 }
 
 .footer1 {
@@ -76,7 +128,7 @@ a {
   border-top: 2px solid black;
 }
 
-.flex {
+.flex1 {
   display: flex;
 
 }
@@ -86,4 +138,200 @@ a {
   margin: 5px;
   padding: 5px;
   border-radius: 15px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+}
+
+.container2 {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.container1 {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-auto-columns: auto
+}
+
+.card {
+  background-color: rgb(247, 245, 245);
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.card1 {
+  background-color: gray;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-adjustable-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+}
+
+.test2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.test3 {
+  display: grid;
+  grid-template-columns: 1000px 1fr;
+  grid-template-rows: auto 1fr auto;
+  margin: 0px;
+  padding: 0px;
+  align-items: center;
+  justify-content: space-between
+}
+
+.price {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  margin: 0px;
+  padding: 0px;
+  align-items: baseline;
+}
+
+.foodPrice {
+  color: red;
+  text-align: right;
+}
+
+.food {
+  text-align: left;
+}
+
+.main {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
+
+@media (max-width: 700px) {
+  .grid-adjustable-columns {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  .test2 {
+    display: grid;
+    grid-auto-flow: column;
+  }
+}
+
+@media (min-width: 701px) {
+  .grid-adjustable-columns {
+    margin: 0 auto;
+    grid-auto-flow: row;
+    gap: 1em;
+  }
+
+  .test2 {
+    margin: 0 auto;
+    grid-auto-flow: row;
+    gap: 1em;
+  }
+}
+
+.img-background {
+  background-image: url("./Assets/greek-salad.jpg");
+  border-radius: 15px;
+  height: 200px;
+}
+
+.image {
+  border-radius: 15px;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.imageMain {
+  border-radius: 15px;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 300px;
+}
+
+.button {
+  border-radius: 5px;
+  color: black;
+  background-color: #E1E452;
+  margin-left: 0px;
+  font-weight: bold;
+}
+
+.btn {
+  border-radius: 5px;
+  color: black;
+  background-color: #E1E452;
+  font-weight: bold;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+}
+
+.social {
+  cursor: pointer;
+  color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+.testmon {
+  text-align: center;
+  background-color: rgb(247, 245, 245);
+}
+
+.chefa {
+  height: 250px;
+  left: 50px;
+  /* play around with this */
+  position: relative;
+  top: 90px;
+  /* and play around with this */
+  width: 250px;
+  z-index: 1;
+}
+
+.chefb {
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  /* and this has to be relative */
+  width: 250px;
+}
+
+.copyright {
+  color: white;
+  margin-top: 25vh;
+  font-size: 12px;
 }
