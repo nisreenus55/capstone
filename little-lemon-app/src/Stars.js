@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import "./App.css";
 
 const Stars = () => {
   const [rating, setRating] = useState(null);
@@ -11,7 +12,7 @@ const Stars = () => {
       {[...Array(5)].map((star, index) => {
         const currentRating = index + 1;
         return (
-          <label>
+          <label key={index}>
             <input
               type="radio"
               name="rating"
@@ -28,7 +29,7 @@ const Stars = () => {
           </label>
         );
       })}
-      <p>Your rating is {rating}</p>
+      {rating && <p>Your rating is {rating}</p>}
     </section>
   );
 };

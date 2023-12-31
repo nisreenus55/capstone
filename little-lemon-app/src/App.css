@@ -38,18 +38,17 @@
 }
 
 * {
-  margin1: 10px;
   padding: 10px;
+  font-size: 15px;
 }
 
-
 .nav-bar {
-  background-color: black;
+  background-color: rgb(42, 1, 1);
   border-radius: 15px;
   display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: auto 1fr auto;
-    justify-items: end;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  justify-items: end;
 }
 
 .nav-bar-footer {
@@ -57,6 +56,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto 1fr auto;
+  margin-top: 40px;
 }
 
 .ul {
@@ -65,21 +65,21 @@
   margin: 0;
   padding: 0;
   justify-content: center;
-    margin-top: 12px;
-  }
-  
-  .ul-footer {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  margin-top: 12px;
+}
+
+.ul-footer {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   justify-content: center
 }
 
 span {
   color: white;
 }
+
 ul li {
-  padding1: 4px 8px;
   font-size: 10px;
 }
 
@@ -87,36 +87,36 @@ a {
   text-decoration: none;
   color: white;
   font-size: 15px;
-    color: rgb(197, 206, 95);
-    font-weight: bold;
-    color: white;
+  color: rgb(197, 206, 95);
+  font-weight: bold;
+  color: white;
   }
-  
-  .a-footer {
-    text-decoration: none;
-    font-size: 10px;
-    color: rgb(197, 206, 95);
-    font-weight: bold;
-    color: white;
-  }
-  
-  .order {
-    text-decoration: none;
-    color: white;
-    font-size: 15px;
-    color: rgb(197, 206, 95);
-    font-weight: bold;
-    color: black;
-  }
-  
-  .left {
-    text-align: left;
-    display: inline
-  }
-  
-  .right {
-    text-align: right;
-    display: inline
+
+.a-footer {
+  text-decoration: none;
+  font-size: 10px;
+  color: rgb(197, 206, 95);
+  font-weight: bold;
+  color: white;
+}
+
+.order {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  color: rgb(197, 206, 95);
+  font-weight: bold;
+  color: black;
+}
+
+.left {
+  text-align: left;
+  display: inline
+}
+
+.right {
+  text-align: right;
+  display: inline
 }
 
 .footer1 {
@@ -130,7 +130,6 @@ a {
 
 .flex1 {
   display: flex;
-
 }
 
 .menu {
@@ -164,6 +163,13 @@ a {
   border-radius: 15px;
 }
 
+.card-confirm {
+  background-color: rgb(247, 245, 245);
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+  margin-left: 400px;
+}
 .card1 {
   background-color: gray;
   margin: 5px;
@@ -177,6 +183,15 @@ a {
 .grid-adjustable-columns {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+}
+
+.grid-adjustable-columns-confirm {
+  display: grid;
+  grid-template-columns: 1000px 1fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
   margin: 0px;
@@ -219,12 +234,13 @@ a {
   text-align: left;
 }
 
+.confirm {
+  text-align: center;
+}
 .main {
   padding-left: 0px;
   padding-right: 0px;
 }
-
-
 
 @media (max-width: 700px) {
   .grid-adjustable-columns {
@@ -266,6 +282,14 @@ a {
   width: 100%;
 }
 
+.confirm-image {
+  border-radius: 15px;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 250px;
+}
+
 .imageMain {
   border-radius: 15px;
   display: block;
@@ -281,6 +305,7 @@ a {
   background-color: #E1E452;
   margin-left: 0px;
   font-weight: bold;
+  width: 200px;
 }
 
 .btn {
@@ -288,6 +313,13 @@ a {
   color: black;
   background-color: #E1E452;
   font-weight: bold;
+  margin-top: 5px;
+}
+
+.table-btn {
+  background-color: gray;
+  width: 80px;
+  padding: 0px
 }
 
 input[type=radio] {
@@ -313,10 +345,8 @@ input[type=radio] {
 .chefa {
   height: 250px;
   left: 50px;
-  /* play around with this */
   position: relative;
   top: 90px;
-  /* and play around with this */
   width: 250px;
   z-index: 1;
 }
@@ -326,12 +356,96 @@ input[type=radio] {
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  /* and this has to be relative */
   width: 250px;
 }
 
 .copyright {
   color: white;
-  margin-top: 25vh;
+  margin-top: 5vh;
   font-size: 12px;
+}
+
+.selected {
+  color: gray;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-left: 0px;
+  font-weight: bold;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.valid {
+  border: 2px solid black;
+}
+
+.validDiv {
+  padding: 0px;
+  margin: 0px;
+}
+
+.invalidDiv {
+  padding: 0px;
+  margin: 0px;
+  color: red;
+}
+
+.input-err {
+  border: 1px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.inputLabel {
+  padding: 15px 0px 5px;
+}
+
+.table-ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.table-li {
+  padding: 0px;
+  margin: 0px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0px;
+}
+
+.table-tr {
+  padding: 0px;
+  margin:0px;
+}
+
+h2{
+  padding: 0px;
+}
+
+.book-label {
+  padding: 15px 0px 5px;
+}
+
+.required:after {
+  color: #e32;
+  content: ' *';
+  display: inline;
+  padding: 15px 0px 5px;
+}
+
+.required {
+  padding: 15px 0px 5px;
 }

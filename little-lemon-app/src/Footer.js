@@ -1,52 +1,27 @@
+import React from "react";
 import ProfilePicture from "./Assets/logo.svg";
 import { FaFacebook, FaTwitter, FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div>
-      <nav class="nav-bar-footer">
+    <React.Fragment>
+      <nav className="nav-bar-footer">
         <div>
           <img src={ProfilePicture} alt="Little Lemon Header" />
           <p className="copyright">Copyright Little Lemon &copy; 2023</p>
         </div>
         <ul className="ul-footer">
-          <span>Doormat Navigation</span>
-
           <li>
-            <a href="#" className="a-footer">
-              Home
-            </a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#" className="a-footer">
-              ABOUT
-            </a>
-          </li>
-          <li>
-            <a href="#" className="a-footer">
-              MENU
-            </a>
-          </li>
-          <li>
-            <a href="#" className="a-footer">
-              RESERVATION
-            </a>
-          </li>
-          <li>
-            <a href="#" className="a-footer">
-              ORDER ONLINE
-            </a>
-          </li>
-          <li>
-            <a href="#" className="a-footer">
-              LOGIN
-            </a>
+            <Link to="/reservation">Reservation</Link>
           </li>
         </ul>
 
         <ul className="ul-footer">
           <span>Contact</span>
-
           <li>
             <a href="#" className="a-footer">
               Address
@@ -78,7 +53,7 @@ const Footer = () => {
           </li>
         </ul>
       </nav>
-    </div>
+    </React.Fragment>
   );
 };
 

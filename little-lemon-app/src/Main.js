@@ -1,10 +1,9 @@
 import * as React from "react";
-
-import "./App.css";
 import mainPicture from "./Assets/restauranfood.jpg";
 import greekSalad from "./Assets/greek-salad.jpg";
 import bruchetta from "./Assets/bruchetta.svg";
 import lemonDessert from "./Assets/lemon-dessert.jpg";
+import "./App.css";
 
 const Main = () => {
   return (
@@ -13,17 +12,17 @@ const Main = () => {
         <div className="test2">
           <section style={{ padding: "0px", margin: "0px" }}>
             <h1 style={{ padding: "0px", margin: "0px" }}>Little Lemon</h1>
-            <acrticle>
+            <article>
               <h2 style={{ paddingLeft: "0px", marginLeft: "0px" }}>Chicago</h2>
               <p style={{ paddingLeft: "0px", marginLeft: "0px" }}>
                 We are a family owned Mediterranean restaurant,focused on
                 traditional recipes served with a modern twist.
               </p>
               <button className="button">Reserve a Table</button>
-            </acrticle>
+            </article>
           </section>
 
-          <asides
+          <aside
             style={{
               paddingLeft: "10px",
               marginLeft: "10px",
@@ -38,10 +37,10 @@ const Main = () => {
               width="200px"
               className="imageMain"
             />
-          </asides>
+          </aside>
         </div>
         <section className="test3">
-          <h2 className="left">This week specials!</h2>
+          <h2 className="left" style={{fontSize: "20px"}}>This week specials!</h2>
           <button className="btn">Online Menu</button>
         </section>
         <div className="grid-adjustable-columns">
