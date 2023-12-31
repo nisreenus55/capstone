@@ -16,7 +16,6 @@ function App() {
   const [data, setData] = useState([]);
   const [confirmed, setConfirmed] = useState(null);
   const [reserved, setReserved] = useState(null);
-  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
     const date = state.selectedDate; //"2023-11-30";

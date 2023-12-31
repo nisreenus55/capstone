@@ -7,11 +7,11 @@ const TimesRow = ({ times, dispatch }) => {
   const handleClick = (time) => {
     dispatch({ type: "set", payload: { selectedTime: time } });
   };
-  
+
   return (
     <React.Fragment>
       <div className="table-tr">
-        <h2>Available Times</h2>
+        <h2>Please reserve from bellow available Times.</h2>
         <table className="table-tr">
           <tbody className="table-tr">
             {times.map((time, index) => {
