@@ -193,7 +193,6 @@ a {
   display: grid;
   grid-template-columns: 1000px 1fr;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
   margin: 0px;
   padding: 0px;
 }
@@ -316,6 +315,13 @@ a {
   margin-top: 5px;
 }
 
+.book-btn {
+  border-radius: 5px;
+  color: black;
+  background-color: black;
+  font-weight: bold;
+  margin-top: 5px;
+}
 .table-btn {
   background-color: gray;
   width: 80px;
@@ -448,4 +454,56 @@ h2{
 
 .required {
   padding: 15px 0px 5px;
+}
+
+a:hover {
+  color: #E1E452;
+}
+
+.back{
+  color: black;
+}
+.back:hover {
+  color: rgb(30, 85, 30);
+}
+
+.reserve-link{
+  color:#E1E452
+}
+
+.reserve-link:hover {
+  color: #E1E452;
+}
+
+.reserve-link {
+  color: white
+}
+
+.book-link-disabled {
+  color: gray;
+}
+
+.book-link-enabled {
+  color:#E1E452;
+}
+
+.inputWithIcon {
+  position: relative;
+  padding: 15px 0px 5px;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  left: 350px;
+  top: 30px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.icon {
+  position: absolute;
+  left: 340px;
+  top: 20px;
+  color: #aaa;
+  transition: 0.3s;
 }

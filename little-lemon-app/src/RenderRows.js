@@ -15,10 +15,14 @@ const RenderRows = ({ time, index, handleClick }) => {
                 {time}{" "}
                 </td>
                 <td>
-                    <button className="table-btn" data-testid="reservButton">
+                    <button
+                        className="table-btn"
+                        aria-label="Reserve Table Button"
+                        data-testid="reservButton"
+                    >
                         <Link
                             to="/reservation"
-                            style={{ color: "yellow" }}
+                            className="reserve-link"
                             data-testid="reservLink"
                             onClick={() => handleClick(time)}
                         >

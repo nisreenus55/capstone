@@ -88,7 +88,7 @@ describe("Test using renderHook", () => {
     const data = ["17:00", "18:00", "19:00", "20:00", "21:00"];
     const { result } = renderHook(() => useReducer(updateTimes, data));
     const [state, dispatch] = result.current;
-    dispatch({ type: "setTimes", payload: { times: data } });
+    //dispatch({ type: "setTimes", payload: { times: data } });
 
     expect(state).toEqual(["17:00", "18:00", "19:00", "20:00", "21:00"]);
   });

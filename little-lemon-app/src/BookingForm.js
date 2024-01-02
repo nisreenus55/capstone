@@ -4,6 +4,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "./App.css";
 import { useCallback } from "react";
+import { handleSubmit } from "./Handlers";
+
+
 
 const schema = yup.object().shape({
   date: yup.string().required(),
@@ -11,7 +14,7 @@ const schema = yup.object().shape({
 });
 
 const BookingForm = ({ resTime, dispatch, state }) => {
-    const [validdate, setValidDate] = useState(null);
+  const [validdate, setValidDate] = useState(null);
 
   const [formData, setFormData] = useState({
     date: "",
@@ -25,9 +28,11 @@ const BookingForm = ({ resTime, dispatch, state }) => {
   const [occasion, setOccasion] = useState("");
   const [guests, setGuests] = useState("");
   const [special, setSpecial] = useState("");
+  const [submitted, setSubmitted] = useState("");
 
-  const handleOnSubmit = (values) => { };
-  
+  const handleOnSubmit = (values) => {
+  };
+let isSubmitted;
   const formik = useFormik({
     initialValues: {
       date: "",
@@ -45,19 +50,35 @@ const BookingForm = ({ resTime, dispatch, state }) => {
     [formik]
   );
 
-  const handleDateChange = (e) => {
-        dispatch({
-          type: "setDate",
-          payload: { selectedDate: e.target.value },
-        });
+  const handleDateChange = (e) =>{
+    const dateValue = e.target.value;
+    dispatch({
+      type: "setDate",
+      payload: { selectedDate: dateValue },
+    });
 
-    setInputValue("date", e.target.value);
-        setResDate(e.target.value);
-
+    setInputValue("date", dateValue);
+    setResDate(dateValue);
+    document.getElementById("date").valueTest = dateValue;
+    console.log(document.getElementById("date").valuetest);
     formik.handleChange(e);
-  };
+    console.log("Date updated");
+  }
+  //   const handleDateChange = (e) => {
+  //     const dateValue = e.target.value;
+  //         dispatch({
+  //           type: "setDate",
+  //           payload: { selectedDate: dateValue },
+  //         });
 
-  const handleSpecialChange = (e) => {
+  //     setInputValue("date", dateValue);
+  //         setResDate(dateValue);
+  //     document.getElementById("date").valueTest = dateValue;
+  // console.log(document.getElementById("date").valuetest);
+  //     formik.handleChange(e);
+  //   };
+
+  function  handleSpecialChange (e) {
     setSpecial(e.target.value);
     setInputValue("special", e.target.value);
     formik.handleChange(e);
@@ -71,9 +92,30 @@ const BookingForm = ({ resTime, dispatch, state }) => {
     setOccasion(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   formik.handleSubmit();
+  //   alert('submitted ' )
+  //   console.log('submitted')
+  //   document.getElementById("submitted-special").innerHTML = "submitted";
+  //   document.getElementById("submitted-special").innerText = "submitted";
+  //   isSubmitted = "submitted";
+  //   alert('text : '+document.getElementById("submitted-special").innerText);
+  // };
+
+  let dateValue = document.getElementById("date")?.valuetest;
+  let dateValue1 = document.getElementById("date")?.value;
+  let validValue = dateValue || dateValue1;
+
+  const handleTest = (e) => {
+    const test = e.target.value;
+
+    document.getElementById("date").valueTest = test;
   };
+
+  const handleSubmitData = (e) => {
+    handleSubmit(e, formik, isSubmitted);
+  }
   return (
     <React.Fragment>
       <form
@@ -84,7 +126,8 @@ const BookingForm = ({ resTime, dispatch, state }) => {
           padding: "10px 0px 15px",
           margin: "0px",
         }}
-        onSubmit={formik.handleSubmit}
+        onSubmit={handleSubmitData}
+        data-testid="form"
       >
         <h2>Book Now</h2>
         <p className="selected">
@@ -98,16 +141,23 @@ const BookingForm = ({ resTime, dispatch, state }) => {
           type="date"
           id="date"
           name="date"
+          data-testid="book-date"
+          placeholder="date"
           style={{ fontFamily: "auto" }}
           onChange={handleDateChange}
           value={formik.values.date}
           onBlur={formik.handleBlur}
+          valuetest={(e) => e.target.valuetest}
         />
-        <div className="validDiv">
-          {formik.errors.date ? (
-            <small className="invalidDiv">{formik.errors.date}</small>
-          ) : null}
-        </div>
+        {!validValue && (
+          <div className="validDiv" data-testid="validDateDiv">
+            {formik.errors.date && !!formik.touched.date ? (
+              <small className="invalidDiv" data-testid="invalidDate">
+                {formik.errors.date}
+              </small>
+            ) : null}
+          </div>
+        )}
         <label htmlFor="guests" className="required">
           Number of guests
         </label>
@@ -135,30 +185,51 @@ const BookingForm = ({ resTime, dispatch, state }) => {
           placeholder="Special Requirements"
           id="special"
           name="special"
+          data-testid="book-special"
+          valuetest={(e) => e.target.valuetest}
           onChange={handleSpecialChange}
           value={formik.values.special}
           onBlur={formik.handleBlur}
         />
-        <div className="validDiv">
-          {formik.errors.special ? (
-            <small className="invalidDiv">{formik.errors.special}</small>
+        <div className="validDiv" data-testid="validSpecialDiv">
+          {formik.errors.special && !!formik.touched.special ? (
+            <small className="invalidDiv" data-testid="invalidSpecial">
+              {formik.errors.special}
+            </small>
           ) : null}
         </div>
-        <button className="btn" aria-label="reservation">
+        <button
+          className="book-btn"
+          aria-label="On Click"
+          onClick={handleSubmitData}
+          data-testid="book-button"
+          disabled={
+            Object.keys(formik.values.date).length === 0 &&
+            Object.keys(formik.values.special).length === 0
+          }
+        >
           {Object.keys(formik.values.date).length > 0 &&
           Object.keys(formik.values.special).length > 0 ? (
-            <Link to="/customerDetails" style={{ color: "black" }}>
+            <Link to="/customerDetails" className="book-link-enabled">
               Make Your reservation
             </Link>
           ) : (
-            <span style={{ color: "black", fontSize: "15px" }}>
+            <span style={{ fontSize: "15px" }} className="book-link-disabled">
               Make Your reservation
             </span>
           )}
         </button>
+
+        <span
+          className="invalidDiv"
+          data-testid="submitted-special"
+          id="submitted-special"
+        ></span>
       </form>
     </React.Fragment>
   );
 };
 
 export default BookingForm;
+
+

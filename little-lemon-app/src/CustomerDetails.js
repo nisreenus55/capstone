@@ -2,6 +2,8 @@ import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { FaGooglePay } from "react-icons/fa";
+
 import "./App.css";
 
 const schema = yup.object().shape({
@@ -178,8 +180,9 @@ const CustomerDetails = ({ state, dispatch }) => {
           gap: "1px",
           padding: "10px 0px 15px",
           margin: "0px",
+          position: "relative",
         }}
-        onSubmit={formik.handleSubmit}
+        onSubmit={formik.onSubmit}
       >
         <h2>Booking Now: Customer Data</h2>
         <p className="selected">
@@ -188,7 +191,6 @@ const CustomerDetails = ({ state, dispatch }) => {
         <p className="selected">
           Selected Date : {state ? state.selectedDate : ""}
         </p>
-
         <label htmlFor="name" className="required">
           Name
         </label>
@@ -200,7 +202,6 @@ const CustomerDetails = ({ state, dispatch }) => {
           onChange={handleNameChange}
           onBlur={formik.handleBlur}
         />
-
         <div className="validDiv">
           {formik.errors.name && !!formik.touched.name ? (
             <small className="invalidDiv">{formik.errors.name}</small>
@@ -208,7 +209,6 @@ const CustomerDetails = ({ state, dispatch }) => {
             <small className="invalidDiv">wrong name format </small>
           ) : null}
         </div>
-
         <label htmlFor="phone" className="required">
           Phone Number
         </label>
@@ -222,7 +222,6 @@ const CustomerDetails = ({ state, dispatch }) => {
           onChange={handlePhoneChange}
           onBlur={formik.handleBlur}
         />
-
         <div className="validDiv">
           {formik.errors.phone && !!formik.touched.phone ? (
             <small className="invalidDiv">{formik.errors.phone}</small>
@@ -230,7 +229,6 @@ const CustomerDetails = ({ state, dispatch }) => {
             <small className="invalidDiv">wrong phone </small>
           ) : null}
         </div>
-
         <label htmlFor="email" className="required">
           Email
         </label>
@@ -242,7 +240,6 @@ const CustomerDetails = ({ state, dispatch }) => {
           onChange={handleEmailChange}
           onBlur={formik.handleBlur}
         />
-
         <div className="validDiv">
           {formik.errors.email && !!formik.touched.email ? (
             <small className="invalidDiv">{formik.errors.email}</small>
@@ -250,22 +247,60 @@ const CustomerDetails = ({ state, dispatch }) => {
             <small className="invalidDiv">wrong Email format</small>
           ) : null}
         </div>
+        <div
+          // style={{
+          //   position: "absolute",
 
-        <label htmlFor="credit" className="required">
-          Credit Card
-        </label>
-        <input
-          type="text"
-          maxLength="19"
-          placeholderChar={"\u2000"}
-          placeholder="Card Number"
-          id="credit"
-          name="credit"
-          value={formik.values.credit}
-          onChange={handleCreditChange}
-          onBlur={formik.handleBlur}
-        />
+          //   color: "gray",
+          // }}
+          className="inputWithIcon"
+        >
+          <label htmlFor="credit" className="required">
+            Credit Card
+          </label>
 
+          <input
+            type="text"
+            maxLength="19"
+            placeholderChar={"\u2000"}
+            placeholder="Card Number"
+            id="credit"
+            name="credit"
+            value={formik.values.credit}
+            onChange={handleCreditChange}
+            onBlur={formik.handleBlur}
+            style={{ width: "95%" }}
+          />
+          {/*<i
+            class="fa fa-user fa-lg"
+            style={{
+              position: "absolute",
+              left1: "15px",
+              top1: "40px",
+              color: "black",
+            }}
+          ></i>
+
+          <i class="fa fa-key fa-lg fa-fw" aria-hidden="true">
+            {" "}
+          </i>*/}
+
+          <span
+            style1={{
+              position: "absolute",
+              left1: "15px",
+              top1: "40px",
+              color: "black",
+            }}
+            className="icon"
+          >
+            <FaGooglePay
+              size={30}
+
+              //className="star"
+            />
+          </span>
+        </div>
         <div className="validDiv">
           {formik.errors.credit && !!formik.touched.credit ? (
             <small className="invalidDiv">{formik.errors.credit}</small>
@@ -273,21 +308,22 @@ const CustomerDetails = ({ state, dispatch }) => {
             <small className="invalidDiv">wrong credit </small>
           ) : null}
         </div>
-
-        <button className="btn" aria-label="Confirm" style={ {marginTop: "20px"}}>
+        <button
+          className="book-btn"
+          aria-label="Customer Detail"
+          style={{ marginTop: "20px" }}
+        >
           {Object.keys(formik.values.name).length > 0 &&
           Object.keys(formik.values.email).length > 0 &&
           !!validEmail ? (
             <Link
               to={notAllRequiredFilled ? "" : "/confirmedBooking"}
-              style={{ color: "black" }}
+              className="book-link-enabled"
             >
-              {allRequiredFilled
-                ? "Confirm Your reservation"
-                : "Please enter required data"}
+              Confirm Your reservation
             </Link>
           ) : (
-            <span style={{ color: "black", fontSize: "15px" }}>
+            <span style={{ fontSize: "15px" }} className="book-link-disabled">
               Confirm Your reservation
             </span>
           )}

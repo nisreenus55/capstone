@@ -37,7 +37,7 @@ const ConfirmedBooking = ({ state }) => {
             </div>
 
             <label className1="btn">
-              <Link to="/" style={{ color: "black" }}>
+              <Link to="/" style1={{ color: "black" }} className="back">
                 Back to Home
               </Link>
             </label>
