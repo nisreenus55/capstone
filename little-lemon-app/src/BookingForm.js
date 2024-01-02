@@ -15,6 +15,10 @@ const schema = yup.object().shape({
 
 const BookingForm = ({ resTime, dispatch, state }) => {
   const [validdate, setValidDate] = useState(null);
+  const [validDate, setValidDat] = useState(null);
+  const [validGuests, setValidGuests] = useState(null);
+  const [validOccassion, setValidOccassion] = useState(null);
+  const [validSpecial, setValidSpecial] = useState(null);
 
   const [formData, setFormData] = useState({
     date: "",
@@ -29,6 +33,7 @@ const BookingForm = ({ resTime, dispatch, state }) => {
   const [guests, setGuests] = useState("");
   const [special, setSpecial] = useState("");
   const [submitted, setSubmitted] = useState("");
+  const [clicked, setClicked] = useState(null);
 
   const handleOnSubmit = (values) => {
   };
@@ -58,7 +63,9 @@ let isSubmitted;
     });
 
     setInputValue("date", dateValue);
-    setResDate(dateValue);
+    //setResDate(dateValue);
+    //setValidDate(dateValue);
+
     document.getElementById("date").valueTest = dateValue;
     console.log(document.getElementById("date").valuetest);
     formik.handleChange(e);
@@ -80,16 +87,20 @@ let isSubmitted;
 
   function  handleSpecialChange (e) {
     setSpecial(e.target.value);
+    setValidSpecial(dateValue);
+
     setInputValue("special", e.target.value);
     formik.handleChange(e);
   };
 
   const handleGuestsChange = (e) => {
     setGuests(e.target.value);
+    setValidGuests(e.target.value);
   };
 
   const handleOccasionChange = (e) => {
     setOccasion(e.target.value);
+    setValidOccassion(e.target.value);
   };
 
   // const handleSubmit = (event) => {
@@ -114,8 +125,12 @@ let isSubmitted;
   };
 
   const handleSubmitData = (e) => {
-    handleSubmit(e, formik, isSubmitted);
-  }
+    e.preventDefault();
+    if(!!validDate && !!validGuests && !!validOccassion && !!validSpecial)
+      handleSubmit(e, formik, isSubmitted);
+    setClicked(true);
+  };
+
   return (
     <React.Fragment>
       <form
@@ -203,13 +218,18 @@ let isSubmitted;
           aria-label="On Click"
           onClick={handleSubmitData}
           data-testid="book-button"
-          disabled={
+          disabled1={
             Object.keys(formik.values.date).length === 0 &&
             Object.keys(formik.values.special).length === 0
           }
         >
-          {Object.keys(formik.values.date).length > 0 &&
-          Object.keys(formik.values.special).length > 0 ? (
+          {formik.values.date &&
+         formik.values.special  
+         ? (
+            //   Object.keys(formik.values.date).length > 0 &&
+            // Object.keys(formik.values.special).length > 0 &&
+            // Object.keys(formik.values.guests).length > 0 &&
+            //     Object.keys(formik.values.occasion).length > 0
             <Link to="/customerDetails" className="book-link-enabled">
               Make Your reservation
             </Link>
@@ -224,7 +244,21 @@ let isSubmitted;
           className="invalidDiv"
           data-testid="submitted-special"
           id="submitted-special"
+          style={{ color: "white" }}
         ></span>
+        {(!formik.values.date || !formik.values.special) &&
+          //((!Object.keys(formik.values.date)) //||
+          // Object.keys(formik.values.special).length < 0 ||
+          // Object.keys(formik.values.guests).length < 0 ||
+          // Object.keys(formik.values.occasion).length < 0
+          !!clicked && (
+            <span
+              style={{ fontSize: "15px", color: "red" }}
+              className="book-link-disabled"
+            >
+              Please, enter required information
+            </span>
+          )}
       </form>
     </React.Fragment>
   );

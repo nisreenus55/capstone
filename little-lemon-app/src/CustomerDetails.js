@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { FaGooglePay } from "react-icons/fa";
 
 import "./App.css";
+import { handleSubmit } from "./Handlers";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -63,10 +64,12 @@ const CustomerDetails = ({ state, dispatch }) => {
   const [validPhone, setValidPhone] = useState(null);
   const [validName, setValidName] = useState(null);
   const [validCredit, setValidCredit] = useState(null);
+  const [clicked, setClicked] = useState(null);
 
   const handleOnSubmit = (values) => {
 
   };
+let isSubmitted;
 
   const formik = useFormik({
     initialValues: {
@@ -104,6 +107,7 @@ const CustomerDetails = ({ state, dispatch }) => {
 
   const handleNameChange = (e) => {
     const nameValue = e.target.value;
+    console.log("nameValue " + nameValue);
     const nameRegExp = /^[a-zA-Z ]*$/;
     const isValid = nameValue.length > 0 && nameRegExp.test(nameValue);
     setValidName(isValid);
@@ -164,12 +168,19 @@ const CustomerDetails = ({ state, dispatch }) => {
     Object.keys(formik.values.email).length === 0 ||
     Object.keys(formik.values.phone).length === 0 ||
     Object.keys(formik.values.credit).length === 0;
-  
+
     const allRequiredFilled =
       Object.keys(formik.values.name).length > 0 &&
       Object.keys(formik.values.email).length > 0 &&
       Object.keys(formik.values.phone).length > 0 &&
       Object.keys(formik.values.credit).length > 0;
+
+  const handleSubmitData = (e) => {
+    e.preventDefault();
+    if (!!validEmail && !!validPhone && !!validName && !!validCredit)
+      handleSubmit(e, formik, isSubmitted);
+    setClicked(true);
+  };
 
   return (
     <React.Fragment>
@@ -182,7 +193,7 @@ const CustomerDetails = ({ state, dispatch }) => {
           margin: "0px",
           position: "relative",
         }}
-        onSubmit={formik.onSubmit}
+        onSubmit={handleSubmitData}
       >
         <h2>Booking Now: Customer Data</h2>
         <p className="selected">
@@ -312,10 +323,20 @@ const CustomerDetails = ({ state, dispatch }) => {
           className="book-btn"
           aria-label="Customer Detail"
           style={{ marginTop: "20px" }}
+          onClick={handleSubmitData}
+          // disabled={
+          //   Object.keys(formik?.values?.name).length === 0 ||
+          //   Object.keys(formik?.values?.special).length === 0 ||
+          //   Object.keys(formik?.values?.credit).length !== 19
+          // }
         >
           {Object.keys(formik.values.name).length > 0 &&
           Object.keys(formik.values.email).length > 0 &&
-          !!validEmail ? (
+          Object.keys(formik.values.credit).length === 19 &&
+          !!validEmail &&
+          !!validPhone &&
+          !!validName &&
+          !!validCredit ? (
             <Link
               to={notAllRequiredFilled ? "" : "/confirmedBooking"}
               className="book-link-enabled"
@@ -328,6 +349,20 @@ const CustomerDetails = ({ state, dispatch }) => {
             </span>
           )}
         </button>
+        <span
+          className="invalidDiv"
+          data-testid="submitted-special"
+          id="submitted-special"
+          style={{ color: "white" }}
+        ></span>
+        {!allRequiredFilled && !!clicked && (
+          <span
+            style={{ fontSize: "15px", color: "red" }}
+            className="book-link-disabled"
+          >
+            Please, enter required information
+          </span>
+        )}
       </form>
     </React.Fragment>
   );
